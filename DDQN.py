@@ -107,16 +107,6 @@ class Agent:
         self.target_model.set_weights(self.model.get_weights())
 
 
-    def act(self, state):
-        state = np.expand_dims(state, 0)
-        act = np.argmax(self.model.predict(state)[0])
-        # return act
-        noise = self.epsilon * self.noisy(act, 0, 0.5, 0.5)
-
-        print('act:', act, 'noise:', noise, 'sum:', act + noise)
-
-        return act + noise
-
     def get_action(self, state):
         if np.random.rand() <= self.epsilon:
             is_random = True
