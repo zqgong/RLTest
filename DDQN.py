@@ -214,8 +214,6 @@ if __name__ == '__main__':
             state = env.reset()
             history = np.stack(tuple([state]*agent.channel), axis=2)
             history = np.reshape([history], (1, state_size[0], state_size[1], agent.channel))
-            # time_t 代表游戏的每一帧
-            # time_t 越大，分数越高
 
             for time_t in range(10000):
 
@@ -232,7 +230,7 @@ if __name__ == '__main__':
 
                 steps += 1
                 global_step += 1
-                # 在环境中施加行为推动游戏进行
+                
                 next_state, reward, done, _ = env.step(action)
                 next_state = np.reshape([next_state], (1, state_size[0], state_size[1], 1))
                 next_history = np.append(next_state, history[:, :, :, :agent.channel-1], axis=3)
