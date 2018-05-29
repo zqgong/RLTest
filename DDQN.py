@@ -117,13 +117,12 @@ class Agent:
             q_value = self.model.predict(state)
             return np.argmax(q_value[0]), is_random
 
-    # <s,a,r,s'> replay_memory
+    # <s,a,r,s'> 
     def replay_memory(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
 
     def train_replay(self):
         if len(self.memory) < self.train_start:
-            # print('no train')
             return
 
         if self.epsilon > self.epsilon_min:
@@ -151,15 +150,10 @@ class Agent:
         value = self.model.predict(next_history)
         target_value = self.target_model.predict(next_history)
 
-        # like Q Learning, get maximum Q value at s'
-        # But from target model
         for i in range(batch):
             if dead[i]:
                 target[i] = reward[i]
             else:
-                # the key point of Double DQN
-                # selection of action is from model
-                # update is from target model
                 target[i] = reward[i] + self.discount_factor * \
                                         target_value[i][np.argmax(value[i])]
 
@@ -262,12 +256,9 @@ if __name__ == '__main__':
                     agent.save_model('./tmp/dqn_actor.h5')
 
             print('episode', e, 'step(global step):', steps, '/', global_step, 'epsilon:', agent.epsilon, 'loss:', agent.loss_, 'memory:', len(agent.memory))
-
+            
             e += 1
 
-
-
         except:
-
             time.sleep(3)
 
