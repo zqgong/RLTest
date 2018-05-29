@@ -59,10 +59,6 @@ class Agent:
             self.update_target_model()
             print('len of memory is ', len(self.memory))
 
-        # self.sess = tf.InteractiveSession()
-        # K.set_session(self.sess)
-        # self.sess.run(tf.global_variables_initializer())
-
         self.avg_q_max, self.avg_loss, self.loss_ = 0, 0, 0
 
     def optimizer(self):
