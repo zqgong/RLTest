@@ -106,8 +106,6 @@ class Agent:
     def update_target_model(self):
         self.target_model.set_weights(self.model.get_weights())
 
-    def noisy(self, x, mu, theta, sigma):
-        return theta * (mu - x) + sigma * np.random.randn(1)[0]
 
     def act(self, state):
         state = np.expand_dims(state, 0)
