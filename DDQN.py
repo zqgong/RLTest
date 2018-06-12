@@ -169,7 +169,6 @@ class Agent:
 
 if __name__ == '__main__':
 
-    # OU = OU()
     episodes = 10000
 
     # 为agent初始化gym环境参数
@@ -197,9 +196,6 @@ if __name__ == '__main__':
             history = np.reshape([history], (1, state_size[0], state_size[1], agent.channel))
 
             for time_t in range(10000):
-
-                # turn this on if you want to render
-                # env.render()
 
                 # 选择行为
                 action, is_random = agent.get_action(history)
