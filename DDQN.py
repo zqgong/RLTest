@@ -29,8 +29,7 @@ class Agent:
         self.action_size = action_size
         self.update_target_rate = 10000
 
-        # Cartpole DQN Hyper parameter
-        # deque replay memory
+        # DQN 
         self.discount_factor = 0.99
         self.learning_rate = 0.0005
         self.epsilon = 1.0
